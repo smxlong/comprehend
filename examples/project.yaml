@@ -1,0 +1,7 @@
+nodes:
+  - name: project complete
+    dependencies:
+      - name: foo
+      - name: bar
+  - name: foo
+  - name: bar
