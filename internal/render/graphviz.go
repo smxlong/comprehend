@@ -49,6 +49,8 @@ func (r *GraphViz) RenderToMediaObject(g *graph.Graph, mimeType string) ([]byte,
 		return buff.Bytes(), nil
 	case "image/png":
 		return r.render(buff, "png")
+	case "application/pdf":
+		return r.render(buff, "pdf")
 	}
 	return nil, ErrorUnsupportedMimeType
 }
