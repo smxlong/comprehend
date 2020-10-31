@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/smxlong/comprehend/internal/render"
+
 	"github.com/smxlong/comprehend/internal/spec"
 	"gopkg.in/yaml.v2"
 )
@@ -20,10 +22,16 @@ func Main(args []string) {
 	if err != nil {
 		panic(err)
 	}
-	_, err = NewComprehend(spec)
+	c, err := NewComprehend(spec)
 	if err != nil {
 		panic(err)
 	}
+	r := render.NewGraphViz()
+	bytes, err := r.RenderToMediaObject(c.graph, "image/png")
+	if err != nil {
+		panic(err)
+	}
+	os.Stdout.Write(bytes)
 }
 
 func loadSpec(r io.Reader) (spec.Spec, error) {

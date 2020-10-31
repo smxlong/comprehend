@@ -1,5 +1,6 @@
-github.com/smxlong/xonnex v0.0.0-20201031163532-9a0fe950ce02 h1:c0g9QjtVyJrcGPFzncvDGRg6BXkNm1sLheZY+jiOzWM=
-github.com/smxlong/xonnex v0.0.0-20201031163532-9a0fe950ce02/go.mod h1:aCSN3yCZHb5bnwEosgz23fc9HctsQF7mECP8Or4awZk=
+github.com/smxlong/xonnex v1.2.0 h1:cSojj9AmvJRhN4w48hvW0rnTsiXv+QS1fWwREdtshnw=
+github.com/smxlong/xonnex v1.2.0/go.mod h1:aCSN3yCZHb5bnwEosgz23fc9HctsQF7mECP8Or4awZk=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.3.0 h1:clyUAQHOM3G0M3f5vQj7LuJrETvjVot3Z5el9nffUtU=
 gopkg.in/yaml.v2 v2.3.0/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
