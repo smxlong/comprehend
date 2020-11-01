@@ -31,9 +31,7 @@ func (r *GraphViz) render(buff *bytes.Buffer, format string) ([]byte, error) {
 	return outBuff.Bytes(), nil
 }
 
-// RenderToMediaObject renders the graph with GraphViz
-func (r *GraphViz) RenderToMediaObject(g *graph.Graph, mimeType string) ([]byte, error) {
-	buff := &bytes.Buffer{}
+func (r *GraphViz) generateDotLanguage(g *graph.Graph, buff *bytes.Buffer) {
 	fmt.Fprintln(buff, "digraph {")
 	g.ForEachNode(func(g *graph.Graph, n *graph.Node) bool {
 		fmt.Fprintf(buff, "  \"%s\";\n", n.Metadata().Name())
@@ -44,6 +42,12 @@ func (r *GraphViz) RenderToMediaObject(g *graph.Graph, mimeType string) ([]byte,
 		return true
 	})
 	fmt.Fprintln(buff, "}")
+}
+
+// RenderToMediaObject renders the graph with GraphViz
+func (r *GraphViz) RenderToMediaObject(g *graph.Graph, mimeType string) ([]byte, error) {
+	buff := &bytes.Buffer{}
+	r.generateDotLanguage(g, buff)
 	switch mimeType {
 	case "text/vnd.graphviz":
 		return buff.Bytes(), nil
