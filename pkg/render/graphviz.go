@@ -10,11 +10,21 @@ import (
 
 // GraphViz is a renderer for GraphViz.
 type GraphViz struct {
+	style Style
 }
 
 // NewGraphViz returns a new GraphViz.
-func NewGraphViz() *GraphViz {
-	return &GraphViz{}
+func NewGraphViz(s Style) *GraphViz {
+	return &GraphViz{
+		style: s,
+	}
+}
+
+func dotColor(color Color) string {
+	if color.Name != "" {
+		return color.Name
+	}
+	return fmt.Sprintf("\"%02x%02x%02x\"", color.RGB.R, color.RGB.G, color.RGB.B)
 }
 
 func (r *GraphViz) render(buff *bytes.Buffer, format string) ([]byte, error) {
@@ -34,7 +44,9 @@ func (r *GraphViz) render(buff *bytes.Buffer, format string) ([]byte, error) {
 func (r *GraphViz) generateDotLanguage(g *graph.Graph, buff *bytes.Buffer) {
 	fmt.Fprintln(buff, "digraph {")
 	g.ForEachNode(func(g *graph.Graph, n *graph.Node) bool {
-		fmt.Fprintf(buff, "  \"%s\";\n", n.Metadata().Name())
+		p := r.style.NodePen(g, n)
+		fmt.Fprintf(buff, "  \"%s\" [color=%s, fillcolor=%s, fontcolor=%s];\n", n.Metadata().Name(),
+			dotColor(p.Draw), dotColor(p.Fill), dotColor(p.Draw))
 		return true
 	})
 	g.ForEachEdge(func(g *graph.Graph, e *graph.Edge) bool {

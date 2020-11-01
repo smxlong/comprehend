@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/smxlong/comprehend/internal/render"
+	"github.com/smxlong/comprehend/pkg/render"
 
 	"github.com/smxlong/comprehend/internal/spec"
 	"gopkg.in/yaml.v2"
@@ -26,8 +26,8 @@ func Main(args []string) {
 	if err != nil {
 		panic(err)
 	}
-	r := render.NewGraphViz()
-	bytes, err := r.RenderToMediaObject(c.graph, "image/png")
+	r := render.NewGraphViz(NewStyle())
+	bytes, err := r.RenderToMediaObject(c.graph, "text/vnd.graphviz")
 	if err != nil {
 		panic(err)
 	}
