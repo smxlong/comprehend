@@ -5,18 +5,6 @@ import (
 	"github.com/smxlong/xonnex/pkg/graph"
 )
 
-// NewComprehend initialized a Comprehend from a spec.Spec.
-func NewComprehend(s spec.Spec) (*Comprehend, error) {
-	c := &Comprehend{
-		graph: graph.NewGraph(),
-	}
-	err := c.buildGraph(s)
-	if err != nil {
-		return nil, err
-	}
-	return c, nil
-}
-
 // buildGraph validates and transforms the spec.Spec into a graph
 func (c *Comprehend) buildGraph(s spec.Spec) error {
 	// Index all nodes by name and add them to the graph.
