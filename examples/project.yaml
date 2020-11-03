@@ -1,7 +1,63 @@
-nodes:
-  - name: project complete
-    dependencies:
-      - name: foo
-      - name: bar
-  - name: foo
-  - name: bar
+groups:
+  - group: main
+    nodes:
+      - name: project complete
+        dependencies:
+          - name: project shipped
+
+      - name: project shipped
+        dependencies:
+          - name: documentation complete
+          - name: code complete
+
+  - group: requirements
+    nodes:
+      - name: requirements known
+
+  - group: documentation
+    nodes:
+      - name: documentation complete
+        dependencies:
+          - name: documentation reviewed
+
+      - name: documentation reviewed
+        dependencies:
+          - name: documentation written
+          - name: reviewer available
+
+      - name: documentation written
+        dependencies:
+          - name: requirements known
+          - name: interface determined
+
+      - name: reviewer available
+
+  - group: code
+    nodes:
+      - name: code complete
+        dependencies:
+          - name: code reviewed
+          - name: code tested
+      
+      - name: code reviewed
+        dependencies:
+          - name: code written
+          - name: reviewer available
+
+      - name: code written
+        dependencies:
+          - name: architecture determined
+          - name: interface determined
+          - name: requirements known
+      
+      - name: architecture determined
+        dependencies:
+          - name: requirements known
+
+      - name: interface determined
+        dependencies:
+          - name: requirements known
+
+      - name: code tested
+        dependencies:
+          - name: code written

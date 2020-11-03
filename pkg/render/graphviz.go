@@ -42,7 +42,7 @@ func (r *GraphViz) render(buff *bytes.Buffer, format string) ([]byte, error) {
 }
 
 func (r *GraphViz) generateDotLanguage(g *graph.Graph, buff *bytes.Buffer) {
-	fmt.Fprintln(buff, "digraph {")
+	fmt.Fprintln(buff, "digraph g {")
 	g.ForEachNode(func(g *graph.Graph, n *graph.Node) bool {
 		p := r.style.NodePen(g, n)
 		fmt.Fprintf(buff, "  \"%s\" [color=%s, fillcolor=%s, fontcolor=%s];\n", n.Metadata().Name(),
