@@ -27,7 +27,12 @@ func (c *Comprehend) buildGraph(s spec.Spec) error {
 		for _, node := range group.Nodes {
 			for _, dependency := range node.Dependencies {
 				if _, valid := nodesByName[dependency.Name]; !valid {
-					return ErrorNodeNotDeclared
+					n := graph.NewNodeWithName(dependency.Name)
+					nodesByName[dependency.Name] = n
+					err := c.graph.AddNode(n)
+					if err != nil {
+						return err
+					}
 				}
 			}
 		}
